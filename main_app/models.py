@@ -18,5 +18,16 @@ class Dog(models.Model):
 
 
 
-    
+class Bid(models.Model):
+    customer=models.CharField(max_length=100)
+    price=models.IntegerField()
+    date=models.DateField('bidding date')
 
+    dog=models.ForeignKey(Dog,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.customer} bid {self.price} on {self.date}"
+
+
+class Meta:
+    ordering = ['-date']
