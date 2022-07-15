@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Sport List</h1>
+
+{% for sport in sport_list %}
+  <a href="{% url 'sports_detail' sport.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ sport.name }}</span>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}

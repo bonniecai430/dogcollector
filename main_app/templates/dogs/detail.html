@@ -45,6 +45,47 @@
     </div>
   </div>
 
+
+  <hr>
+  <div class="row">
+    <div class="col s6">
+      <h3>{{ dog.name }}'s Sports</h3>
+      {% if dog.sports.count %}
+        {% for sport in dog.sports.all %}
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">
+              </span>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <h5>No sports :(</h5>
+      {% endif %}
+    </div>
+
+
+    <div class="col s6">
+        <h3>Available Sports</h3>
+        {% if sports.count %}
+          {% for sport in sports.all %}
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title"></span>
+              </div>
+              <div class="card-action">
+                <form action="{% url 'assoc_sport' dog.id sport.id %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="btn">Add</button>
+                </form>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <h5>{{dog.name}} Already Has All sports Available</h5>
+        {% endif %}
+      </div>
+    
   <script>
 const dateEl = document.getElementById('id_date');
   M.Datepicker.init(dateEl, {
